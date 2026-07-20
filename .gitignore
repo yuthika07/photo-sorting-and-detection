@@ -1,0 +1,28 @@
+# Environment files (never commit real secrets/config)
+.env
+
+# Python virtual environments
+venv/
+.venv/
+env/
+
+# Python bytecode / cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Generated application data (DB, logs, thumbnails) — these belong on the
+# user's machine at runtime, never in version control
+/data/
+*.db
+*.sqlite3
+
+# Editor / OS clutter
+.vscode/
+.idea/
+.DS_Store
+
+# Test / coverage artifacts
+.pytest_cache/
+htmlcov/
+.coverage
