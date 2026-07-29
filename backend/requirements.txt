@@ -48,7 +48,7 @@ insightface==0.7.3
 
 # Runs the SCRFD .onnx model locally, CPU by default — no network calls
 # at inference time, matching the app's fully offline requirement
-onnxruntime==1.19.2
+onnxruntime==1.28.0
 
 # Headless (no GUI dependency) OpenCV build — used for image decoding
 # and array handling, which SCRFD's preprocessing expects
