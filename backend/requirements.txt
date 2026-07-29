@@ -1,0 +1,68 @@
+# -----------------------------------------------------------------------
+# Wedding Photo Organizer — Backend Dependencies (Phase 1)
+# Only the packages needed for the API skeleton. AI/CV/DB libraries are
+# intentionally left out until their respective phases.
+# -----------------------------------------------------------------------
+
+# Web framework — builds the REST API
+fastapi==0.115.0
+
+# ASGI server used to actually run the FastAPI app locally
+uvicorn[standard]==0.30.6
+
+# Data validation / serialization used throughout FastAPI
+pydantic==2.9.2
+
+# Settings management — loads and validates environment variables
+pydantic-settings==2.5.2
+
+# Loads variables from a .env file into the process environment
+python-dotenv==1.0.1
+
+# -----------------------------------------------------------------------
+# Phase 2 additions — database layer
+# -----------------------------------------------------------------------
+
+# ORM + SQL toolkit used to define models and query SQLite
+sqlalchemy==2.0.35
+
+# Database migration tool — tracks schema changes as versioned scripts
+alembic==1.13.3
+
+# -----------------------------------------------------------------------
+# Phase 3 additions — image scanning module
+# -----------------------------------------------------------------------
+
+# Used ONLY to read image dimensions (width/height) and validate that a
+# file is a genuine, decodable image. This is plain image I/O, not a
+# computer-vision/ML library — face detection/embedding models are a
+# separate, later addition to this file.
+Pillow==10.4.0
+
+# -----------------------------------------------------------------------
+# Phase 4 additions — face detection module (SCRFD via InsightFace)
+# -----------------------------------------------------------------------
+
+# Provides the SCRFD face detector implementation and ONNX model loading
+insightface==0.7.3
+
+# Runs the SCRFD .onnx model locally, CPU by default — no network calls
+# at inference time, matching the app's fully offline requirement
+onnxruntime==1.19.2
+
+# Headless (no GUI dependency) OpenCV build — used for image decoding
+# and array handling, which SCRFD's preprocessing expects
+opencv-python-headless==4.10.0.84
+
+# -----------------------------------------------------------------------
+# Phase 5 additions — face recognition module (ArcFace via InsightFace)
+# -----------------------------------------------------------------------
+# No new packages needed: ArcFaceONNX and face alignment utilities are
+# already provided by the insightface package installed above.
+
+# -----------------------------------------------------------------------
+# Phase 6 additions — face clustering module (DBSCAN)
+# -----------------------------------------------------------------------
+
+# Provides the DBSCAN clustering algorithm used to group embeddings
+scikit-learn==1.5.2

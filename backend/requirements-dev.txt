@@ -1,0 +1,16 @@
+# -----------------------------------------------------------------------
+# Wedding Photo Organizer — Backend TEST dependencies
+# Install alongside requirements.txt for running the test suite. Kept
+# separate so a production install never pulls in test tooling.
+# -----------------------------------------------------------------------
+
+-r requirements.txt
+
+# Test runner
+pytest==8.3.3
+
+# Coverage reporting (pytest --cov=app)
+pytest-cov==5.0.0
+
+# Starlette's TestClient (used to test FastAPI routers) requires httpx
+httpx==0.27.2
