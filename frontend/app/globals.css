@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens — see frontend/DESIGN.md for the full rationale.
+   A warm, tactile "professional desktop app" palette: dark brushed-
+   graphite chrome housing warm paper-toned content panels, with a
+   single brass/gold accent reserved for selection state.
+   ------------------------------------------------------------------ */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* Dark chrome (toolbar, shelf rail) */
+  --color-graphite-950: #17171b;
+  --color-graphite-900: #1e1e23;
+  --color-graphite-800: #28282f;
+  --color-graphite-700: #35353d;
+  --color-graphite-600: #46464f;
+
+  /* Warm paper (content surfaces) */
+  --color-paper-50: #f8f5ee;
+  --color-paper-100: #f1ebdd;
+  --color-paper-200: #e7ded0;
+  --color-paper-300: #d9cdb8;
+
+  /* Ink (text on paper) */
+  --color-ink-900: #262420;
+  --color-ink-700: #4a463e;
+  --color-ink-500: #726c5f;
+
+  /* Steel (icons / muted text on dark chrome) */
+  --color-steel-300: #c2c4cb;
+  --color-steel-400: #9a9da6;
+  --color-steel-500: #74767f;
+
+  /* Brass / gold (the one reserved accent — selection + primary actions) */
+  --color-gold-400: #d9b64a;
+  --color-gold-500: #c9a227;
+  --color-gold-600: #a9841c;
+
+  --shadow-panel: 0 1px 2px rgba(23, 23, 27, 0.06), 0 8px 20px -6px rgba(23, 23, 27, 0.18);
+  --shadow-card: 0 1px 1px rgba(38, 36, 32, 0.06), 0 3px 8px -2px rgba(38, 36, 32, 0.14);
+  --shadow-card-elevated: 0 2px 4px rgba(38, 36, 32, 0.1), 0 14px 28px -8px rgba(38, 36, 32, 0.28);
+  --shadow-inset-well: inset 0 1px 3px rgba(23, 23, 27, 0.35), inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-paper-100);
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+/* Brushed-metal toolbar texture: a very subtle vertical gradient plus
+   a hairline top highlight — this is intentionally faint. The goal is
+   a physical strip of anodized aluminum, not a "gradient background." */
+.chrome-surface {
+  background-image: linear-gradient(
+    to bottom,
+    var(--color-graphite-800) 0%,
+    var(--color-graphite-900) 55%,
+    var(--color-graphite-950) 100%
+  );
+  box-shadow: var(--shadow-panel);
+  position: relative;
+}
+.chrome-surface::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Warm paper card texture: an almost-imperceptible grain gradient so
+   cards read as printed stock rather than a flat CSS rectangle. */
+.paper-surface {
+  background-image: linear-gradient(160deg, var(--color-paper-50) 0%, var(--color-paper-100) 100%);
+}
+
+/* Recessed "well" used for search input and the people-shelf rail —
+   the tactile opposite of an embossed card: it should look pressed
+   into the surface, not sitting on top of it. */
+.well-surface {
+  background: var(--color-graphite-950);
+  box-shadow: var(--shadow-inset-well);
+}
+
+::selection {
+  background: var(--color-gold-400);
+  color: var(--color-graphite-950);
+}
+
+/* Thin, warm scrollbars — a flat OS scrollbar breaks the "desktop app"
+   illusion immediately. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-graphite-600) transparent;
+}
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-graphite-600);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
